@@ -16,6 +16,10 @@ rails db:migrate db:seed
 
 This will download all the dependencies for our app and set up the database.
 
+## Video Walkthrough
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/2NSsNs-sanI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+
 ## Revisiting The Create Action
 
 In the previous lesson, we used the `params` hash to access data from the body
@@ -246,10 +250,10 @@ Our params hash looks like this:
 
 ```rb
 {
-  "name"=>"Blue Jay", 
-  "species"=>"Cyanocitta cristata", 
+  "name"=>"Blue Jay",
+  "species"=>"Cyanocitta cristata",
   "bird"=>{
-    "name"=>"Blue Jay", 
+    "name"=>"Blue Jay",
     "species"=>"Cyanocitta cristata"
   }
 }
@@ -279,15 +283,15 @@ we can work with `params` in Rails to keep our data safe.
 
 1. Explicitly specify the attributes we are trying to assign:
 
-    ```rb
-    Bird.create(name: params[:name], species: params[:species])
-    ```
+   ```rb
+   Bird.create(name: params[:name], species: params[:species])
+   ```
 
 2. Use strong params to whitelist specific attributes:
 
-    ```rb
-    Bird.create(params.permit(:name, :species))
-    ```
+   ```rb
+   Bird.create(params.permit(:name, :species))
+   ```
 
 ## Resources
 
