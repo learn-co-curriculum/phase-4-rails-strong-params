@@ -275,7 +275,7 @@ ActiveSupport.on_load(:action_controller) do
 end
 ```
 
-## Summary
+## Conclusion
 
 Rails has security features in place to prevent the mass assignment vulnerability
 from allowing users to update any arbitrary attribute of a model. There are two ways
