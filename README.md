@@ -266,8 +266,16 @@ the name of the controller (in our case, `bird` since we're in a
 our strong params in place, you'll still see `Unpermitted parameters: :bird` for
 our requests.
 
-You can disable the wrap parameters for all controllers if you like, by going
-into the `config/initializers/wrap_parameters.rb` file and updating it like so:
+You can disable the wrap parameters feature in an individual controller:
+
+```rb
+class BirdsController < ApplicationController
+  wrap_parameters format: []
+end
+```
+
+You can also disable it for all controllers if you like, by going into the
+`config/initializers/wrap_parameters.rb` file and updating it like so:
 
 ```rb
 ActiveSupport.on_load(:action_controller) do
@@ -281,17 +289,17 @@ Rails has security features in place to prevent the mass assignment vulnerabilit
 from allowing users to update any arbitrary attribute of a model. There are two ways
 we can work with `params` in Rails to keep our data safe.
 
-1. Explicitly specify the attributes we are trying to assign:
+- Explicitly specify the attributes we are trying to assign:
 
-   ```rb
-   Bird.create(name: params[:name], species: params[:species])
-   ```
+  ```rb
+  Bird.create(name: params[:name], species: params[:species])
+  ```
 
-2. Use strong params to whitelist specific attributes:
+- Or use strong params to whitelist specific attributes:
 
-   ```rb
-   Bird.create(params.permit(:name, :species))
-   ```
+  ```rb
+  Bird.create(params.permit(:name, :species))
+  ```
 
 ## Resources
 
