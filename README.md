@@ -59,9 +59,9 @@ see an alternate approach to working with `params`.
 
 ## What Is Mass Assignment?
 
-Let's take a step back from Rails for the moment, and think back to Object
-Oriented Ruby. We could design a `BirdWatcher` class of our own, without Active
-Record, like so:
+Let's take a step back from Rails for the moment, and think back to
+Object-Oriented Ruby. We could design a `BirdWatcher` class of our own, without
+Active Record, like so:
 
 ```rb
 class BirdWatcher
@@ -169,7 +169,7 @@ Then, make another request using Postman. We'll get back a
 `500 - Internal Server Error` as a response, with a
 `ActiveModel::ForbiddenAttributesError` as the exception.
 
-This is thanks to Rails built-in security protection against the
+This is thanks to Rails' built-in security protection against the
 [mass assignment vulnerability][] in action. We can't just pass in the entire
 params hash, since that would mean a malicious user could potentially update
 attributes of our model that we don't want to give them access to.
@@ -210,8 +210,8 @@ Completed 201 Created in 22ms (Views: 2.5ms | ActiveRecord: 3.6ms | Allocations:
 
 ## Refactoring Params
 
-In Rails controller there's a strong convention among developers to create a separate method
-for strong params as a `private` method, like so:
+In Rails controllers there's a strong convention among developers to create a
+separate `private` method for strong params, like so:
 
 ```rb
 class BirdsController < ApplicationController
