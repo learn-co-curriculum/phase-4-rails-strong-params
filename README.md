@@ -3,7 +3,7 @@
 ## Learning Goals
 
 - Explain the benefits and dangers of mass assignment
-- Use `params.permit` to whitelist specific params
+- Use `params.permit` to allow specific params
 
 ## Setup
 
@@ -174,8 +174,8 @@ This is thanks to Rails' built-in security protection against the
 params hash, since that would mean a malicious user could potentially update
 attributes of our model that we don't want to give them access to.
 
-What we can do instead is use [Strong Parameters][strong params] to
-**whitelist** only the parameters that we want to use:
+What we can do instead is use [Strong Parameters][strong params] to **permit**
+_only_ the parameters that we want to use:
 
 ```rb
 def create
@@ -190,7 +190,7 @@ When we call `params.permit(:name, :species)`, this will return a new hash with
 
 Try making that same request in Postman, but this time, add an `id` key in the
 JSON in your request body. You'll now see that the bird is successfully created.
-The `id` key was not whitelisted, so only the `name` and `species` were used to
+The `id` key was not allowed, so only the `name` and `species` were used to
 create a bird. The server logs will verify this for us:
 
 ```txt
@@ -295,7 +295,7 @@ we can work with `params` in Rails to keep our data safe.
   Bird.create(name: params[:name], species: params[:species])
   ```
 
-- Or use strong params to whitelist specific attributes:
+- Or use strong params to permit specific attributes:
 
   ```rb
   Bird.create(params.permit(:name, :species))
