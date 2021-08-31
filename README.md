@@ -105,19 +105,19 @@ params = {
 }
 ```
 
-Ideally, a user shouldn't be able to create their own account with `admin`
-privileges. But if we pass this entire hash of parameters to our `#initialize`
-method, that's exactly what will happen:
+Ideally, a user shouldn't be able to create their own account and give themself
+`admin` privileges. But if we pass this entire hash of parameters to our
+`#initialize` method, that's exactly what will happen:
 
 ```rb
 BirdWatcher.new(params)
 # => #<BirdWatcher:0x00007fa635094858 @name="Emma", ... @admin=true>
 ```
 
-Since Active Record models also use this feature of mass assignment to take a
-hash of any key-value pairs and assign them to attributes on our models, passing
-in the entire `params` hash when creating a new record in our database opens us
-up to this [mass assignment vulnerability][].
+Active Record works similarly: it uses mass assignment to take a hash of
+key-value pairs and assign them to attributes on our models. As a result,
+passing in the entire `params` hash when creating a new record in our database
+would open us up to the [mass assignment vulnerability][].
 
 So how do we fix it?
 
@@ -166,7 +166,7 @@ end
 ```
 
 Then, make another request using Postman. We'll get back a
-`500 - Internal Server Error` as a response, with a
+`500 - Internal Server Error` as a response, with an
 `ActiveModel::ForbiddenAttributesError` as the exception.
 
 This is thanks to Rails' built-in security protection against the
@@ -188,10 +188,10 @@ When we call `params.permit(:name, :species)`, this will return a new hash with
 **only** the name and species keys. Rails will also mark this new hash as
 `permitted`, which means we can safely use this new hash for mass assignment.
 
-Try making that same request in Postman, but this time, add an `id` key in the
-JSON in your request body. You'll now see that the bird is successfully created.
-The `id` key was not allowed, so only the `name` and `species` were used to
-create a bird. The server logs will verify this for us:
+Try making that same request in Postman, but this time, add an `id` key to the
+JSON in your request body. Now the bird is successfully created but, since the
+`id` key was not allowed, only the `name` and `species` were used. The server
+logs will verify this for us:
 
 ```txt
 Started POST "/birds" for ::1 at 2021-05-03 07:45:33 -0400
