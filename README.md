@@ -285,21 +285,19 @@ end
 
 ## Conclusion
 
-Rails has security features in place to prevent the mass assignment vulnerability
-from allowing users to update any arbitrary attribute of a model. There are two ways
-we can work with `params` in Rails to keep our data safe.
+In this lesson, we learned how we can use mass assignment to reduce the amount
+of code we need to write to create a new instance of a model. We also learned
+why using mass assignment can expose us to security vulnerabilities and how to
+keep that from happening.
 
-- Explicitly specify the attributes we are trying to assign:
+## Check For Understanding
 
-  ```rb
-  Bird.create(name: params[:name], species: params[:species])
-  ```
+Before you move on, make sure you can answer the following questions:
 
-- Or use strong params to permit specific attributes:
-
-  ```rb
-  Bird.create(params.permit(:name, :species))
-  ```
+1. What is the mass assignment vulnerability?
+2. What security precaution is built in to Rails to protect against this
+   vulnerability?
+3. What two approaches can we use to handle parameters safely?
 
 ## Resources
 
