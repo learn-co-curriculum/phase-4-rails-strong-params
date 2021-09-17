@@ -16,9 +16,8 @@ $ rails db:migrate db:seed
 
 This will download all the dependencies for our app and set up the database.
 
-## Video Walkthrough
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2NSsNs-sanI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+<!-- ## Video Walkthrough -->
+<!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/2NSsNs-sanI?rel=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe> -->
 
 ## Revisiting The Create Action
 
