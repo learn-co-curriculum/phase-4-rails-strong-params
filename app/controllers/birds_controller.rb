@@ -8,18 +8,28 @@ class BirdsController < ApplicationController
 
   # POST /birds
   def create
-    bird = Bird.create(params.permit(:name, :species))
+    bird = Bird.create(bird_params)
     render json: bird, status: :created
   end
 
-  # GET /birds/:id
-  def show
+   # GET /birds/:id
+   def show
     bird = Bird.find_by(id: params[:id])
     if bird
       render json: bird
     else
       render json: { error: "Bird not found" }, status: :not_found
     end
+
+  # other controller actions here
+
+  private
+  # all methods below here are private
+
+  def bird_params
+    params.permit(:name, :species)
+  end
+
   end
 
 end
